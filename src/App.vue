@@ -1,19 +1,29 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+    <img alt="Header image" src="./assets/bg-header-desktop.svg" width="1440"/>
   </header>
 
   <main>
-    <TheWelcome />
+    <div>
+      <h1>Filters</h1>
+    </div>
+
+    <!--      TODO Create jobs for each job in data.json-->
+    <div class="job">
+      <div class="attributes">
+        <img class="logo" alt="Logo" src="./assets/faceit.svg">
+        <div class="info">
+          Information
+        </div>
+      </div>
+      <div class="tag">
+        Tags
+      </div>
+    </div>
   </main>
 </template>
 
@@ -21,7 +31,7 @@ import TheWelcome from './components/TheWelcome.vue'
 @import './assets/base.css';
 
 #app {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 2rem;
 
@@ -32,9 +42,32 @@ header {
   line-height: 1.5;
 }
 
+.job {
+  background-color: white;
+  padding: 35px;
+  border-radius: 8px;
+  border: 1px solid black;
+  overflow: hidden;
+}
+
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  margin-right: 25px;
+  width: 10%;
+  float: left;
+}
+
+.info {
+  width: 80%;
+  float: left;
+}
+
+.tag {
+  text-align: right;
+}
+
+.attributes, .tag {
+  float: left;
+  width: 45%;
 }
 
 a,
@@ -46,7 +79,7 @@ a,
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: hsl(180, 29%, 50%);
   }
 }
 
@@ -57,25 +90,15 @@ a,
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: block;
     padding: 0 2rem;
   }
 
   header {
     display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
+    margin-bottom: 80px;
+    background-color: hsl(180, 29%, 50%);
   }
 }
 </style>
