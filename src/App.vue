@@ -1,10 +1,42 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script src="./retrieveData.js">
+import Job from './components/Job.vue'
+import retrieveData from './retrieveData.js'
+
+export default {
+  components: {
+    Job
+  },
+  data() {
+    const jobs = retrieveData.getData("data.json")
+    console.log(jobs)
+    const job_info = []
+    jobs.forEach(job => {
+      job_info.append({
+        id: job.id,
+        company: job.company,
+        logo: '.' + job.logo,
+        new: job.new,
+        featured: job.featured,
+        position: job.position,
+        role: job.role,
+        level: job.level,
+        postedAt: job.postedAt,
+        contract: job.contract,
+        location: job.location,
+        languages: job.languages,
+        tools: job.tools,
+      })
+    })
+    return {
+      posts: job_info
+    }
+  },
+}
 </script>
 
 <template>
   <header>
-    <img alt="Header image" src="./assets/bg-header-desktop.svg" width="1440"/>
+    <img alt="Header image" src="./images/bg-header-desktop.svg" width="1440"/>
   </header>
 
   <main>
@@ -12,23 +44,27 @@ import HelloWorld from './components/HelloWorld.vue'
       <h1>Filters</h1>
     </div>
 
-    <!--      TODO Create jobs for each job in data.json-->
-    <div class="job">
-      <div class="attributes">
-        <img class="logo" alt="Logo" src="./assets/faceit.svg">
-        <div class="info">
-          Information
-        </div>
-      </div>
-      <div class="tag">
-        Tags
-      </div>
-    </div>
+    <job
+        v-for="post in posts"
+        :id="post.id"
+        :company="post.company"
+        :logo="post.logo"
+        :new="post.new"
+        :featured="post.featured"
+        :position="post.position"
+        :role="post.role"
+        :level="post.level"
+        :postedAt="post.postedAt"
+        :contract="post.contract"
+        :location="post.location"
+        :languages="post.languages"
+        :tools="post.tools"
+    />
   </main>
 </template>
 
 <style>
-@import './assets/base.css';
+@import 'images/base.css';
 
 #app {
   max-width: 1440px;
@@ -48,6 +84,7 @@ header {
   border-radius: 8px;
   border: 1px solid black;
   overflow: hidden;
+  margin: 15px 0;
 }
 
 .logo {
