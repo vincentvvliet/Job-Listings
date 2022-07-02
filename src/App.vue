@@ -1,17 +1,16 @@
-<script src="./retrieveData.js">
+<script>
 import Job from './components/Job.vue'
-import retrieveData from './retrieveData.js'
+import * as json from "../data.json";
 
 export default {
   components: {
     Job
   },
   data() {
-    const jobs = retrieveData.getData("data.json")
-    console.log(jobs)
+    const jobs = json['default']
     const job_info = []
     jobs.forEach(job => {
-      job_info.append({
+      job_info.push({
         id: job.id,
         company: job.company,
         logo: '.' + job.logo,

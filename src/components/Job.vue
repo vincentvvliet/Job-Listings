@@ -5,7 +5,7 @@
       <img class="logo" alt="Logo" src='../images/insure.svg'>
       <div class="info">
         Information
-        <h4>{{ title }}</h4>
+        <h4>{{ company }}</h4>
       </div>
     </div>
     <div class="tag">
