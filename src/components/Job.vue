@@ -6,11 +6,11 @@
         <div class="company">
           <h3 style="font-weight: bold">{{ company }}</h3>
         </div>
-        <div class="new">
-          <h4>{{ this.new }}</h4>
+        <div class="new" v-if="this.new">
+          <h5>NEW!</h5>
         </div>
-        <div class="featured">
-          <h4>{{ featured }}</h4>
+        <div class="featured" v-if="this.featured">
+          <h5>FEATURED</h5>
         </div>
         <div class="position">
           <h3 style="font-weight: bold">{{ position }}</h3>
@@ -85,8 +85,8 @@ export default {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
 }
 
 .info > * {
@@ -100,10 +100,22 @@ export default {
 
 .new {
   grid-area: 1 / 2 / 2 / 3;
+  border-radius: 15px;
+  color: white;
+  background-color: hsl(180, 29%, 50%);
+  display: block;
+  margin: auto;
+  padding: 2px 10px;
 }
 
 .featured {
   grid-area: 1 / 3 / 2 / 4;
+  border-radius: 15px;
+  color: white;
+  background-color: hsl(180, 14%, 20%);
+  display: block;
+  margin: auto;
+  padding: 2px 10px;
 }
 
 .position {
@@ -112,7 +124,7 @@ export default {
   font-weight: bold;
 }
 
-.position:hover {
+.job:hover .position {
   color: hsl(180, 29%, 50%);
 }
 
@@ -129,4 +141,5 @@ export default {
   border-radius: 50%;
   display: inline-block;
 }
+
 </style>
