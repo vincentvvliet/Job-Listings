@@ -1,15 +1,28 @@
 <template>
   <div class="job">
+    <img class="logo" alt="Logo" v-bind:src="logo">
+<!--    <img class="logo" alt="Logo" src="../../images/account.svg">-->
     <div class="attributes">
-      <img class="logo" alt="Logo" src='{{ logo }}'>
-      <img class="logo" alt="Logo" src='../images/insure.svg'>
       <div class="info">
-        Information
-        <h4>{{ company }}</h4>
+        <div class="company">
+          <h3 style="font-weight: bold">{{ company }}</h3>
+        </div>
+        <div class="new">
+          <h4>{{ this.new }}</h4>
+        </div>
+        <div class="featured">
+          <h4>{{ featured }}</h4>
+        </div>
+        <div class="position">
+          <h3 style="font-weight: bold">{{ position }}</h3>
+        </div>
+        <div class="misc">
+          <h4>{{ postedAt }} <span class="dot"></span> {{ contract }} <span class="dot"></span> {{ location }}</h4>
+        </div>
       </div>
     </div>
     <div class="tag">
-      Tags
+      <h4>{{ role }} {{ level }} {{ languages }}</h4>
     </div>
   </div>
 </template>
@@ -36,25 +49,76 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
+.job {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
-h3 {
-  font-size: 1.2rem;
+.logo {
+  grid-area: 1 / 1 / 4 / 2;
+  display: block;
+  margin: auto;
 }
 
-.greetings h1,
-.greetings h3 {
-  text-align: center;
+.attributes {
+  grid-area: 1 / 2 / 4 / 6;
 }
 
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+.tag {
+  grid-area: 1 / 6 / 4 / 10;
+  display: block;
+  margin: auto;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.info > * {
+  margin: 10px;
+}
+
+.company {
+  grid-area: 1 / 1 / 2 / 2;
+  color: hsl(180, 29%, 50%);
+}
+
+.new {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.featured {
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+.position {
+  grid-area: 2 / 1 / 3 / 4;
+  color: hsl(180, 14%, 20%);
+  font-weight: bold;
+}
+
+.position:hover {
+  color: hsl(180, 29%, 50%);
+}
+
+.misc {
+  grid-area: 3 / 1 / 4 / 4;
+  color: hsl(180, 8%, 52%);
+}
+
+.dot {
+  height: 3px;
+  width: 3px;
+  margin: 3px 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
 }
 </style>

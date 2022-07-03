@@ -13,7 +13,7 @@ export default {
       job_info.push({
         id: job.id,
         company: job.company,
-        logo: '.' + job.logo,
+        logo: job.logo,
         new: job.new,
         featured: job.featured,
         position: job.position,
@@ -35,11 +35,11 @@ export default {
 
 <template>
   <header>
-    <img alt="Header image" src="./images/bg-header-desktop.svg" width="1440"/>
+    <img alt="Header image" src="../images/bg-header-desktop.svg" width="1440"/>
   </header>
 
   <main>
-    <div>
+    <div class="job">
       <h1>Filters</h1>
     </div>
 
@@ -63,7 +63,7 @@ export default {
 </template>
 
 <style>
-@import 'images/base.css';
+@import '../images/base.css';
 
 #app {
   max-width: 1440px;
@@ -77,33 +77,20 @@ header {
   line-height: 1.5;
 }
 
+/*.job {*/
+/*  display: grid;*/
+/*  grid-template-columns: auto auto auto;*/
+/*  column-gap: 10px;*/
+/*  row-gap: 5px;*/
+/*}*/
+
 .job {
   background-color: white;
-  padding: 35px;
+  padding: 10px;
   border-radius: 8px;
   border: 1px solid black;
   overflow: hidden;
   margin: 15px 0;
-}
-
-.logo {
-  margin-right: 25px;
-  width: 10%;
-  float: left;
-}
-
-.info {
-  width: 80%;
-  float: left;
-}
-
-.tag {
-  text-align: right;
-}
-
-.attributes, .tag {
-  float: left;
-  width: 45%;
 }
 
 a,
