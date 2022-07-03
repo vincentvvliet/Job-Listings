@@ -1,7 +1,6 @@
 <template>
   <div class="job">
     <img class="logo" alt="Logo" v-bind:src="logo">
-<!--    <img class="logo" alt="Logo" src="../../images/account.svg">-->
     <div class="attributes">
       <div class="info">
         <div class="company">
@@ -55,6 +54,15 @@ export default {
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  box-shadow: 0 4px 8px 0 hsl(180, 8%, 52%);
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+.job:hover {
+  border-left: 5px solid hsl(180, 29%, 50%);
 }
 
 .logo {

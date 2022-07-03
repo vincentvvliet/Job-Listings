@@ -84,14 +84,6 @@ header {
 /*  row-gap: 5px;*/
 /*}*/
 
-.job {
-  background-color: white;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid black;
-  overflow: hidden;
-  margin: 15px 0;
-}
 
 a,
 .green {
