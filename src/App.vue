@@ -39,8 +39,27 @@ export default {
   </header>
 
   <main>
-    <div class="job">
-      <h1>Filters</h1>
+    <div class="filters">
+      <div class="container">
+        <div class="filter">
+          Frontend
+        </div>
+        <button class="delete">X</button>
+      </div>
+
+      <div class="container">
+        <div class="filter">
+          CSS
+        </div>
+        <button class="delete">X</button>
+      </div>
+
+      <div class="container">
+        <div class="filter">
+          JavaScript
+        </div>
+        <button class="delete">X</button>
+      </div>
     </div>
 
     <job
@@ -76,20 +95,46 @@ export default {
 header {
   line-height: 1.5;
 }
-
-/*.job {*/
-/*  display: grid;*/
-/*  grid-template-columns: auto auto auto;*/
-/*  column-gap: 10px;*/
-/*  row-gap: 5px;*/
+/*TODO*/
+/*main {*/
+/*  position:relative;*/
+/*  z-index: -1;*/
 /*}*/
 
+.filters {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 var(--dark-grayish-cyan);
+  padding: 10px 40px;
+  border-radius: 8px;
+}
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+.filter {
+  background-color: var(--grayish-cyan);
+  color: hsl(180, 29%, 50%);
+  border-radius: 5px 0 0 5px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 2px 10px;
+}
+
+.container {
+  display: inline-flex;
+  margin: 0 8px;
+}
+
+.delete {
+  background-color: hsl(180, 29%, 50%);
+  color: var(--grayish-cyan);
+  border-radius: 0 5px 5px 0;
+  font-weight: bold;
+  display: inline-block;
+  padding: 2px 10px;
+  border: none;
+}
+
+.delete:hover {
+  color: white;
+  background-color: var(--very-dark-grayish-cyan);
 }
 
 @media (hover: hover) {
@@ -112,7 +157,6 @@ a,
   header {
     display: flex;
     place-items: center;
-    margin-bottom: 80px;
     background-color: hsl(180, 29%, 50%);
   }
 }

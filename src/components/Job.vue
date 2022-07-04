@@ -20,8 +20,10 @@
         </div>
       </div>
     </div>
-    <div class="tag">
-      <h4>{{ role }} {{ level }} {{ languages }}</h4>
+    <div class="tags">
+      <div class="tag">{{ role }}</div>
+      <div class="tag">{{ level }}</div>
+      <div class="tag" v-for="language in languages">{{ language }}</div>
     </div>
   </div>
 </template>
@@ -49,20 +51,20 @@ export default {
 
 <style scoped>
 .job {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 var(--dark-grayish-cyan);
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  box-shadow: 0 4px 8px 0 hsl(180, 8%, 52%);
-  background-color: white;
-  padding: 10px;
+  padding: 10px 30px 10px 10px;
   border-radius: 8px;
   overflow: hidden;
   margin: 15px 0;
 }
 .job:hover {
-  border-left: 5px solid hsl(180, 29%, 50%);
+  border-left: 5px solid var(--dark-cyan);
 }
 
 .logo {
@@ -75,10 +77,11 @@ export default {
   grid-area: 1 / 2 / 4 / 6;
 }
 
-.tag {
+.tags {
   grid-area: 1 / 6 / 4 / 10;
-  display: block;
-  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .info {
@@ -94,52 +97,67 @@ export default {
 }
 
 .company {
+  color: var(--dark-cyan);
   grid-area: 1 / 1 / 2 / 2;
-  color: hsl(180, 29%, 50%);
 }
 
 .new {
+  background-color: var(--dark-cyan);
+  color: white;
   grid-area: 1 / 2 / 2 / 3;
   border-radius: 15px;
-  color: white;
-  background-color: hsl(180, 29%, 50%);
   display: block;
   margin: auto;
   padding: 2px 10px;
 }
 
 .featured {
+  background-color: var(--very-dark-grayish-cyan);
+  color: white;
   grid-area: 1 / 3 / 2 / 4;
   border-radius: 15px;
-  color: white;
-  background-color: hsl(180, 14%, 20%);
   display: block;
   margin: auto;
   padding: 2px 10px;
 }
 
 .position {
+  color: var(--dark-cyan);
   grid-area: 2 / 1 / 3 / 4;
-  color: hsl(180, 14%, 20%);
   font-weight: bold;
 }
 
 .job:hover .position {
-  color: hsl(180, 29%, 50%);
+  color: var(--dark-cyan);
 }
 
 .misc {
   grid-area: 3 / 1 / 4 / 4;
-  color: hsl(180, 8%, 52%);
+  color: var(--dark-grayish-cyan);
 }
 
 .dot {
+  background-color: var(--dark-grayish-cyan);
   height: 3px;
   width: 3px;
   margin: 3px 10px;
-  background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
+}
+
+.tag {
+  background-color: var(--grayish-cyan);
+  color: var(--dark-cyan);
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 2px 10px;
+  margin: 0 8px;
+}
+
+.tag:hover {
+  background-color: var(--dark-cyan);
+  color: var(--grayish-cyan);
 }
 
 </style>
