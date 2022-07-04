@@ -1,15 +1,31 @@
 <script>
 import Job from './components/Job.vue'
 import * as json from "../data.json";
+import Filter from "./components/Filter.vue";
 
 export default {
   components: {
-    Job
+    Job,
+    Filter,
   },
   data() {
     const jobs = json['default']
     const job_info = []
+    const tags = [{name: "Frontend"}, {name:"CSS"}, {name:"JavaScript"}, {name:"Python"}]
     jobs.forEach(job => {
+      // const filters = [job.role, job.level].concat(job.languages)
+      // const tags = [] // TODO tag functionality
+      // const clear = false // TODO clear functionality
+      // // Check if clear
+      // if (clear) {
+      //   tags.length = 0
+      // }
+      // // Apply filters
+      // if (filters.some((element) => tags.includes(element))) {
+      //   // TODO move pushing to array inside if statement
+      //   console.log("here");
+      // }
+
       job_info.push({
         id: job.id,
         company: job.company,
@@ -27,9 +43,16 @@ export default {
       })
     })
     return {
-      posts: job_info
+      posts: job_info,
+      filters: tags,
     }
   },
+  methods: {
+    // Clear filters
+    clear(event) {
+      tags.length = 0
+    }
+  }
 }
 </script>
 
@@ -40,6 +63,11 @@ export default {
 
   <main>
     <div class="filters">
+<!--      TODO fix filters-->
+<!--      <filter v-for="filter in filters"-->
+<!--              :name="filter.name"/>-->
+
+<!--      TODO remove below when filters fixed-->
       <div class="container">
         <div class="filter">
           Frontend
@@ -60,6 +88,15 @@ export default {
         </div>
         <button class="delete">X</button>
       </div>
+
+      <div class="container">
+        <div class="filter">
+          Python
+        </div>
+        <button class="delete">X</button>
+      </div>
+
+      <button class="clear">Clear</button>
     </div>
 
     <job
@@ -85,15 +122,18 @@ export default {
 @import '../images/base.css';
 
 #app {
+  display: block;
+  padding: 0 2rem;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem;
-
   font-weight: normal;
 }
 
 header {
   line-height: 1.5;
+  display: flex;
+  place-items: center;
+  background-color: hsl(180, 29%, 50%);
 }
 /*TODO*/
 /*main {*/
@@ -106,58 +146,19 @@ header {
   box-shadow: 0 4px 8px 0 var(--dark-grayish-cyan);
   padding: 10px 40px;
   border-radius: 8px;
+  display: flex;
 }
 
-.filter {
-  background-color: var(--grayish-cyan);
-  color: hsl(180, 29%, 50%);
-  border-radius: 5px 0 0 5px;
+.clear {
+  background-color: inherit;
+  color: var(--dark-cyan);
   font-weight: bold;
-  display: inline-block;
-  padding: 2px 10px;
-}
-
-.container {
-  display: inline-flex;
-  margin: 0 8px;
-}
-
-.delete {
-  background-color: hsl(180, 29%, 50%);
-  color: var(--grayish-cyan);
-  border-radius: 0 5px 5px 0;
-  font-weight: bold;
-  display: inline-block;
-  padding: 2px 10px;
   border: none;
+  margin-left: auto;
 }
 
-.delete:hover {
-  color: white;
-  background-color: var(--very-dark-grayish-cyan);
+.clear:hover {
+  text-decoration: underline;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsl(180, 29%, 50%);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: block;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    background-color: hsl(180, 29%, 50%);
-  }
-}
 </style>

@@ -21,9 +21,9 @@
       </div>
     </div>
     <div class="tags">
-      <div class="tag">{{ role }}</div>
-      <div class="tag">{{ level }}</div>
-      <div class="tag" v-for="language in languages">{{ language }}</div>
+      <button class="tag" @click="console.log(role)">{{ role }}</button>
+      <button class="tag">{{ level }}</button>
+      <button class="tag" v-for="language in languages">{{ language }}</button>
     </div>
   </div>
 </template>
@@ -149,9 +149,11 @@ export default {
   background-color: var(--grayish-cyan);
   color: var(--dark-cyan);
   border-radius: 5px;
+  border: none;
   font-weight: bold;
   display: inline-block;
-  padding: 2px 10px;
+  font-size: inherit;
+  padding: 5px 10px;
   margin: 0 8px;
 }
 
