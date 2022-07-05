@@ -1,19 +1,18 @@
 <template>
   <div class="container">
     <div class="filter">
-      {{ name }}
+      {{ filter.name }}
     </div>
-    <button class="delete">X</button>
+    <button class="delete" @click="$emit('remove-filter', filter)">X</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: [
-    'name',
-  ]
-}
-;
+  props: {
+    filter: Object,
+  },
+};
 </script>
 
 <style>

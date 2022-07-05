@@ -1,6 +1,6 @@
 <script>
 import Job from './components/Job.vue'
-import * as json from "../data.json";
+import json from "../data.json";
 import Filter from "./components/Filter.vue";
 
 export default {
@@ -9,123 +9,96 @@ export default {
     Filter,
   },
   data() {
-    const jobs = json['default']
-    const job_info = []
-    const tags = [{name: "Frontend"}, {name:"CSS"}, {name:"JavaScript"}, {name:"Python"}]
-    jobs.forEach(job => {
-      // const filters = [job.role, job.level].concat(job.languages)
-      // const tags = [] // TODO tag functionality
-      // const clear = false // TODO clear functionality
-      // // Check if clear
-      // if (clear) {
-      //   tags.length = 0
-      // }
-      // // Apply filters
-      // if (filters.some((element) => tags.includes(element))) {
-      //   // TODO move pushing to array inside if statement
-      //   console.log("here");
-      // }
-
-      job_info.push({
-        id: job.id,
-        company: job.company,
-        logo: job.logo,
-        new: job.new,
-        featured: job.featured,
-        position: job.position,
-        role: job.role,
-        level: job.level,
-        postedAt: job.postedAt,
-        contract: job.contract,
-        location: job.location,
-        languages: job.languages,
-        tools: job.tools,
-      })
-    })
     return {
-      posts: job_info,
-      filters: tags,
+      filters: [],
     }
   },
+  computed: {
+    jobs() {
+      const roleFilter = this.filters.find(filter => filter.type === 'role');
+      const levelFilter = this.filters.find(filter => filter.type === 'level');
+      const languageFilters = this.filters.filter(filter => filter.type === 'language');
+
+      return json.filter(job => {
+        return (!roleFilter || job.role === roleFilter.name) &&
+            (!levelFilter || job.level === levelFilter.name) &&
+            (languageFilters.length === 0 || languageFilters.every(({name}) => job.languages.includes(name)));
+      })
+    },
+  },
   methods: {
-    // Clear filters
-    clear(event) {
-      tags.length = 0
-    }
+    /**
+     * Clear all filters.
+     */
+    clear() {
+      this.filters.splice(0, this.filters.length);
+    },
+    addFilter(type, name) {
+      // TODO prevent duplicates
+      if (!this.filters.some(element => element.name === name)) {
+        this.filters.push({type, name});
+        console.log(this.filters[1]);
+      }
+    },
+    removeFilter(filter) {
+      this.filters.splice(this.filters.indexOf(filter), 1);
+    },
   }
 }
 </script>
 
 <template>
   <header>
-    <img alt="Header image" src="../images/bg-header-desktop.svg" width="1440"/>
+    <img alt="Header image" src="../images/bg-header-desktop.svg"/>
   </header>
 
   <main>
     <div class="filters">
-<!--      TODO fix filters-->
-<!--      <filter v-for="filter in filters"-->
-<!--              :name="filter.name"/>-->
-
-<!--      TODO remove below when filters fixed-->
-      <div class="container">
-        <div class="filter">
-          Frontend
-        </div>
-        <button class="delete">X</button>
-      </div>
-
-      <div class="container">
-        <div class="filter">
-          CSS
-        </div>
-        <button class="delete">X</button>
-      </div>
-
-      <div class="container">
-        <div class="filter">
-          JavaScript
-        </div>
-        <button class="delete">X</button>
-      </div>
-
-      <div class="container">
-        <div class="filter">
-          Python
-        </div>
-        <button class="delete">X</button>
-      </div>
-
-      <button class="clear">Clear</button>
+      <Filter v-for="filter in filters"
+              :filter="filter"
+              @remove-filter="removeFilter"
+      />
+      <button class="clear" @click="clear">Clear</button>
     </div>
 
-    <job
-        v-for="post in posts"
-        :id="post.id"
-        :company="post.company"
-        :logo="post.logo"
-        :new="post.new"
-        :featured="post.featured"
-        :position="post.position"
-        :role="post.role"
-        :level="post.level"
-        :postedAt="post.postedAt"
-        :contract="post.contract"
-        :location="post.location"
-        :languages="post.languages"
-        :tools="post.tools"
+    <Job
+        v-for="job in jobs"
+        :job="job"
+        @add-filter="addFilter"
     />
   </main>
 </template>
 
 <style>
-@import '../images/base.css';
+:root {
+  --dark-cyan: hsl(180, 29%, 50%);
+  --grayish-cyan: hsl(180, 52%, 96%);
+  --dark-grayish-cyan: hsl(180, 8%, 52%);
+  --very-dark-grayish-cyan: hsl(180, 14%, 20%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-family: 'League Spartan', sans-serif;
+  font-size: 20px;
+}
+
+body {
+  background: hsl(180, 52%, 96%);
+  color: hsl(180, 8%, 52%);
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 #app {
   display: block;
-  padding: 0 2rem;
-  max-width: 1440px;
-  margin: 0 auto;
   font-weight: normal;
 }
 
@@ -135,11 +108,16 @@ header {
   place-items: center;
   background-color: hsl(180, 29%, 50%);
 }
-/*TODO*/
-/*main {*/
-/*  position:relative;*/
-/*  z-index: -1;*/
-/*}*/
+
+header > img {
+  width: 100%;
+}
+
+main {
+  max-width: 1440px;
+  padding: 0 2rem;
+  margin: 0 auto;
+}
 
 .filters {
   background-color: white;
@@ -147,6 +125,7 @@ header {
   padding: 10px 40px;
   border-radius: 8px;
   display: flex;
+  margin-top: -25px;
 }
 
 .clear {

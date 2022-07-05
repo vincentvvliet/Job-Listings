@@ -1,52 +1,42 @@
 <template>
   <div class="job">
-    <img class="logo" alt="Logo" v-bind:src="logo">
+    <img class="logo" alt="Logo" v-bind:src="job.logo">
     <div class="attributes">
       <div class="info">
         <div class="company">
-          <h3 style="font-weight: bold">{{ company }}</h3>
+          <h3>{{ job.company }}</h3>
         </div>
-        <div class="new" v-if="this.new">
+        <div class="new" v-if="job.new">
           <h5>NEW!</h5>
         </div>
-        <div class="featured" v-if="this.featured">
+        <div class="featured" v-if="job.featured">
           <h5>FEATURED</h5>
         </div>
         <div class="position">
-          <h3 style="font-weight: bold">{{ position }}</h3>
+          <h3>{{ job.position }}</h3>
         </div>
         <div class="misc">
-          <h4>{{ postedAt }} <span class="dot"></span> {{ contract }} <span class="dot"></span> {{ location }}</h4>
+          <h4>{{ job.postedAt }} <span class="dot"></span> {{ job.contract }} <span class="dot"></span> {{ job.location }}</h4>
         </div>
       </div>
     </div>
     <div class="tags">
-      <button class="tag" @click="console.log(role)">{{ role }}</button>
-      <button class="tag">{{ level }}</button>
-      <button class="tag" v-for="language in languages">{{ language }}</button>
+      <button class="tag" @click="$emit('add-filter', 'role', job.role)">{{ job.role }}</button>
+      <button class="tag" @click="$emit('add-filter', 'level', job.level)">{{ job.level }}</button>
+      <button class="tag" v-for="language in job.languages"
+              @click="$emit('add-filter', 'language', language)">
+        {{ language }}
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: [
-    'id',
-    'company',
-    'logo',
-    'new',
-    'featured',
-    'position',
-    'role',
-    'level',
-    'postedAt',
-    'contract',
-    'location',
-    'languages',
-    'tools',
-  ]
-}
-;
+  props: {
+    job: Object,
+  }
+};
 </script>
 
 <style scoped>
@@ -122,7 +112,7 @@ export default {
 }
 
 .position {
-  color: var(--dark-cyan);
+  color: var(--very-dark-grayish-cyan);
   grid-area: 2 / 1 / 3 / 4;
   font-weight: bold;
 }
@@ -155,6 +145,7 @@ export default {
   font-size: inherit;
   padding: 5px 10px;
   margin: 0 8px;
+  cursor: pointer;
 }
 
 .tag:hover {
