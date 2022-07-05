@@ -33,13 +33,21 @@ export default {
     clear() {
       this.filters.splice(0, this.filters.length);
     },
+    /**
+     * Add a filter.
+     * @param {String} type - filter type
+     * @param {String} name - filter name
+     */
     addFilter(type, name) {
-      // TODO prevent duplicates
       if (!this.filters.some(element => element.name === name)) {
         this.filters.push({type, name});
         console.log(this.filters[1]);
       }
     },
+    /**
+     * Remove a filter.
+     * @param {Object} filter - Filter object
+     */
     removeFilter(filter) {
       this.filters.splice(this.filters.indexOf(filter), 1);
     },
