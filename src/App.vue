@@ -61,7 +61,7 @@ export default {
   </header>
 
   <main>
-    <div class="filters">
+    <div class="filters" v-if="filters.length > 0">
       <Filter v-for="filter in filters"
               :filter="filter"
               @remove-filter="removeFilter"
