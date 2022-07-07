@@ -122,7 +122,7 @@ header > img {
 }
 
 main {
-  max-width: 1440px;
+  max-width: 375px;
   padding: 0 2rem;
   margin: 0 auto;
 }
@@ -138,7 +138,7 @@ main {
 
 .clear {
   background-color: inherit;
-  color: var(--dark-cyan);
+  color: var(--dark-grayish-cyan);
   font-weight: bold;
   border: none;
   margin-left: auto;
@@ -146,6 +146,14 @@ main {
 
 .clear:hover {
   text-decoration: underline;
+  color: var(--dark-cyan);
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  main {
+    max-width: 1440px;
+  }
 }
 
 </style>

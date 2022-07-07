@@ -40,6 +40,7 @@ export default {
 </script>
 
 <style scoped>
+/* TODO fix font (style and weight) */
 .job {
   background-color: white;
   box-shadow: 0 4px 8px 0 var(--dark-grayish-cyan);
@@ -119,6 +120,7 @@ export default {
 
 .job:hover .position {
   color: var(--dark-cyan);
+  cursor: pointer;
 }
 
 .misc {

@@ -43,5 +43,6 @@ export default {
 .delete:hover {
   color: white;
   background-color: var(--very-dark-grayish-cyan);
+  cursor: pointer;
 }
 </style>
