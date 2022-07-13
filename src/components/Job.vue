@@ -192,7 +192,7 @@ export default {
     grid-template-rows: 1fr;
     grid-column-gap: 0;
     grid-row-gap: 0;
-    padding: 10px 30px 10px 10px;
+    padding: 20px 30px 20px 10px;
   }
 
   .logo {
