@@ -26,8 +26,8 @@ export default {
 }
 
 .container {
+  margin: 8px;
   display: inline-flex;
-  margin: 0 8px;
 }
 
 .delete {
@@ -44,5 +44,11 @@ export default {
   color: white;
   background-color: var(--very-dark-grayish-cyan);
   cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    margin: 0 8px;
+  }
 }
 </style>

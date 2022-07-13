@@ -61,6 +61,7 @@ export default {
   </header>
 
   <main>
+<!--    TODO fix for mobile-->
     <div class="filters" v-if="filters.length > 0">
       <Filter v-for="filter in filters"
               :filter="filter"
@@ -92,7 +93,7 @@ export default {
   margin: 0;
   position: relative;
   font-family: 'League Spartan', sans-serif;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 body {
@@ -132,7 +133,7 @@ main {
   box-shadow: 0 4px 8px 0 var(--dark-grayish-cyan);
   padding: 10px 40px;
   border-radius: 8px;
-  display: flex;
+  display: inline-block;
   margin-top: -25px;
 }
 
@@ -151,8 +152,18 @@ main {
 }
 
 @media only screen and (min-width: 768px) {
+  *,
+  *::before,
+  *::after {
+    font-size: 20px;
+  }
+
   main {
     max-width: 1440px;
+  }
+
+  .filters {
+    display: flex;
   }
 }
 

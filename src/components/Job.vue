@@ -7,16 +7,18 @@
           <h3>{{ job.company }}</h3>
         </div>
         <div class="new" v-if="job.new">
-          <h5>NEW!</h5>
+          <h5 class="new">NEW!</h5>
         </div>
         <div class="featured" v-if="job.featured">
-          <h5>FEATURED</h5>
+          <h5 class="featured">FEATURED</h5>
         </div>
         <div class="position">
           <h3>{{ job.position }}</h3>
         </div>
         <div class="misc">
-          <h4>{{ job.postedAt }} <span class="dot"></span> {{ job.contract }} <span class="dot"></span> {{ job.location }}</h4>
+          <h4>{{ job.postedAt }} <span class="dot"></span> {{ job.contract }} <span class="dot"></span> {{
+              job.location
+            }}</h4>
         </div>
       </div>
     </div>
@@ -41,80 +43,56 @@ export default {
 
 <style scoped>
 /* TODO fix font (style and weight) */
+/* TODO create container for new and featured and make margin-right auto */
 .job {
   background-color: white;
   box-shadow: 0 4px 8px 0 var(--dark-grayish-cyan);
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  padding: 10px 30px 10px 10px;
+  padding: 10px 25px;
   border-radius: 8px;
   overflow: hidden;
   margin: 15px 0;
 }
+
 .job:hover {
   border-left: 5px solid var(--dark-cyan);
 }
 
 .logo {
-  grid-area: 1 / 1 / 4 / 2;
-  display: block;
-  margin: auto;
-}
-
-.attributes {
-  grid-area: 1 / 2 / 4 / 6;
+  margin-top: -232px;
+  z-index: 1;
+  height: 50px;
 }
 
 .tags {
-  grid-area: 1 / 6 / 4 / 10;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.info {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 0;
-  grid-row-gap: 0;
-}
-
-.info > * {
-  margin: 10px;
+  border-top: 1px solid var(--dark-grayish-cyan);
 }
 
 .company {
   color: var(--dark-cyan);
-  grid-area: 1 / 1 / 2 / 2;
 }
 
 .new {
   background-color: var(--dark-cyan);
   color: white;
-  grid-area: 1 / 2 / 2 / 3;
   border-radius: 15px;
   display: block;
   margin: auto;
-  padding: 2px 10px;
+  padding: 1px 4px;
+  font-size: 0.9em;
 }
 
 .featured {
   background-color: var(--very-dark-grayish-cyan);
   color: white;
-  grid-area: 1 / 3 / 2 / 4;
   border-radius: 15px;
   display: block;
   margin: auto;
-  padding: 2px 10px;
+  padding: 1px 4px;
+  font-size: 0.9em;
 }
 
 .position {
   color: var(--very-dark-grayish-cyan);
-  grid-area: 2 / 1 / 3 / 4;
   font-weight: bold;
 }
 
@@ -124,7 +102,6 @@ export default {
 }
 
 .misc {
-  grid-area: 3 / 1 / 4 / 4;
   color: var(--dark-grayish-cyan);
 }
 
@@ -153,6 +130,120 @@ export default {
 .tag:hover {
   background-color: var(--dark-cyan);
   color: var(--grayish-cyan);
+}
+
+/* Mobile positioning */
+.job {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 8px;
+}
+
+.attributes {
+  grid-area: 1 / 1 / 3 / 5;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0;
+  grid-row-gap: 5px;
+}
+
+.company {
+  grid-area: 1 / 1 / 2 / 3;
+}
+
+.new {
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+.featured {
+  grid-area: 1 / 4 / 2 / 5;
+}
+
+.position {
+  grid-area: 2 / 1 / 3 / 5;
+}
+
+.misc {
+  grid-area: 3 / 1 / 4 / 5;
+}
+
+.tags {
+  grid-area: 3 / 1 / 5 / 5;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 5px;
+}
+
+.tags > * {
+  margin: 7px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* Desktop positioning */
+  .job {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+    padding: 10px 30px 10px 10px;
+  }
+
+  .logo {
+    grid-area: 1 / 1 / 4 / 2;
+    display: block;
+    width: 88px;
+    height: auto;
+    margin: auto;
+  }
+
+  .attributes {
+    grid-area: 1 / 2 / 4 / 6;
+  }
+
+  .tags {
+    grid-area: 1 / 6 / 4 / 10;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+  }
+
+  .company {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  .featured {
+    grid-area: 1 / 3 / 2 / 4;
+    font-size: 0.85em;
+  }
+
+  .position {
+    grid-area: 2 / 1 / 3 / 4;
+  }
+
+  .new {
+    grid-area: 1 / 2 / 2 / 3;
+    font-size: 0.85em;
+  }
+
+  .misc {
+    grid-area: 3 / 1 / 4 / 4;
+  }
 }
 
 </style>
