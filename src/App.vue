@@ -41,7 +41,6 @@ export default {
     addFilter(type, name) {
       if (!this.filters.some(element => element.name === name)) {
         this.filters.push({type, name});
-        console.log(this.filters[1]);
       }
     },
     /**
@@ -61,12 +60,13 @@ export default {
   </header>
 
   <main>
-<!--    TODO fix for mobile-->
-    <div class="filters" v-if="filters.length > 0">
-      <Filter v-for="filter in filters"
-              :filter="filter"
-              @remove-filter="removeFilter"
-      />
+    <div class="filter-container" v-if="filters.length > 0">
+      <div class="filters">
+        <Filter v-for="filter in filters"
+                :filter="filter"
+                @remove-filter="removeFilter"
+        />
+      </div>
       <button class="clear" @click="clear">Clear</button>
     </div>
 
@@ -128,13 +128,23 @@ main {
   margin: 0 auto;
 }
 
-.filters {
+.filter-container {
   background-color: white;
   box-shadow: 0 4px 8px 0 var(--dark-grayish-cyan);
-  padding: 10px 40px;
+  padding: 10px;
   border-radius: 8px;
-  display: inline-block;
   margin-top: -25px;
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+}
+
+.filters {
+  display: inline-block;
+  grid-area: 1 / 1 / 2 / 5;
 }
 
 .clear {
@@ -143,6 +153,7 @@ main {
   font-weight: bold;
   border: none;
   margin-left: auto;
+  grid-area: 1 / 5 / 2 / 6;
 }
 
 .clear:hover {
@@ -164,6 +175,10 @@ main {
 
   .filters {
     display: flex;
+  }
+
+  .filter-container {
+    padding: 15px 40px;
   }
 }
 

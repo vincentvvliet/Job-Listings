@@ -42,15 +42,13 @@ export default {
 </script>
 
 <style scoped>
-/* TODO fix font (style and weight) */
-/* TODO create container for new and featured and make margin-right auto */
 .job {
   background-color: white;
   box-shadow: 0 4px 8px 0 var(--dark-grayish-cyan);
   padding: 10px 25px;
   border-radius: 8px;
   overflow: hidden;
-  margin: 15px 0;
+  margin: 40px 0;
 }
 
 .job:hover {
@@ -58,7 +56,7 @@ export default {
 }
 
 .logo {
-  margin-top: -232px;
+  margin-top: -255px;
   z-index: 1;
   height: 50px;
 }
@@ -139,6 +137,7 @@ export default {
   grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 5px;
   grid-row-gap: 8px;
+  overflow: visible;
 }
 
 .attributes {
@@ -151,6 +150,7 @@ export default {
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 0;
   grid-row-gap: 5px;
+  margin-top: 20px;
 }
 
 .company {
