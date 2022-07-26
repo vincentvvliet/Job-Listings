@@ -1,25 +1,22 @@
-# job-listings
+# Job Listings
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Project Description
+This project depicts an interpretation of a simple web application made with Vue.js that resembles the task presented for the traineeship at Code Orange. The application reads all jobs found in a given json file and respresents them in a way similar to the given screenshots. The user is able to filter jobs based on the tags that each job has.
 
 ## Project Setup
 
+To setup the project, run:
 ```sh
 npm install
 ```
 
 ### Compile and Hot-Reload for Development
 
+To compile the web application, run:
 ```sh
 npm run dev
 ```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
+To view the result, go to:
+```
+http://localhost:3000
 ```
